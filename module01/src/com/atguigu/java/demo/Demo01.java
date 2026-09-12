@@ -59,7 +59,6 @@ public class Demo01 {
             case 6 -> level = "D";
             default -> level = "E";
         }
-        ;
         return level;
     }
 }
