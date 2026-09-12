@@ -1,4 +1,4 @@
-package com.atguigu.java.test;
+package com.atguigu.java.day1;
 
 public class Demo06_StringCompare {
 

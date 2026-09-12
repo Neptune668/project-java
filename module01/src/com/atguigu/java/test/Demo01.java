@@ -1,4 +1,4 @@
-package com.atguigu.java.demo;
+package com.atguigu.java.test;
 
 import java.util.Arrays;
 
