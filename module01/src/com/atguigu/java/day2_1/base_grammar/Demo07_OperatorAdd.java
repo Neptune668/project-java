@@ -1,6 +1,5 @@
 package com.atguigu.java.day2_1.base_grammar;
 
-import com.atguigu.java.object_oriented.Apple;
 
 public class Demo07_OperatorAdd {
 

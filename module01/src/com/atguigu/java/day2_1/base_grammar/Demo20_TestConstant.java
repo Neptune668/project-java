@@ -1,6 +1,7 @@
 package com.atguigu.java.day2_1.base_grammar;
 
-import com.atguigu.java.object_oriented.Demo09_Constant;
+
+import com.atguigu.java.day2_1.object_oriented.Demo09_Constant;
 
 public class Demo20_TestConstant {
 
