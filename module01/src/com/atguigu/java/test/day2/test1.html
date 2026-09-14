@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test1.java 运行结果演示 · 一个数字一个数字输出</title>
+<style>
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        padding: 24px;
+        min-height: 100vh;
+        font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+        background: radial-gradient(1200px 600px at 15% -10%, #1e3a8a55, transparent),
+                    radial-gradient(900px 500px at 100% 0%, #0f766e44, transparent),
+                    #0b1120;
+        color: #e2e8f0;
+    }
+
+    .wrap { max-width: 1180px; margin: 0 auto; }
+
+    h1 {
+        margin: 0 0 6px;
+        font-size: 22px;
+        letter-spacing: .5px;
+        background: linear-gradient(90deg, #38bdf8, #34d399);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .sub { margin: 0 0 18px; color: #94a3b8; font-size: 13px; line-height: 1.7; }
+    .sub code { color: #7dd3fc; font-family: Consolas, monospace; }
+
+    .panel {
+        background: #111c33cc;
+        border: 1px solid #1e293b;
+        border-radius: 14px;
+        padding: 16px;
+        backdrop-filter: blur(6px);
+    }
+
+    /* ---------- 控制区 ---------- */
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px; }
+
+    label.k { color: #94a3b8; font-size: 13px; }
+
+    input[type=text], select {
+        background: #0b1120;
+        border: 1px solid #26344d;
+        color: #e2e8f0;
+        padding: 9px 12px;
+        border-radius: 9px;
+        font-size: 13px;
+        outline: none;
+        font-family: Consolas, "Microsoft YaHei", monospace;
+    }
+    input[type=text] { flex: 1; min-width: 260px; }
+    input[type=text]:focus, select:focus { border-color: #38bdf8; box-shadow: 0 0 0 3px #38bdf822; }
+
+    button {
+        border: 0;
+        padding: 9px 18px;
+        border-radius: 9px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        color: #04121f;
+        background: linear-gradient(135deg, #38bdf8, #34d399);
+        transition: transform .12s, filter .12s;
+    }
+    button:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    button:active { transform: translateY(0); }
+    button.ghost { background: #1e293b; color: #cbd5e1; }
+    button:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+    /* ---------- 布局 ---------- */
+    .main { display: grid; grid-template-columns: minmax(340px, 1fr) minmax(380px, 1.05fr); gap: 16px; }
+    @media (max-width: 900px) { .main { grid-template-columns: 1fr; } }
+
+    .title { font-size: 13px; color: #94a3b8; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+    .title b { color: #e2e8f0; font-weight: 600; }
+
+    /* ---------- 二维数组网格 ---------- */
+    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+
+    .cell {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        font-family: Consolas, monospace;
+        font-size: 20px;
+        font-weight: 700;
+        border: 1px solid #1f2b45;
+        background: #0c1526;
+        color: #3f4f6b;
+        transition: background .25s, color .25s, transform .25s, box-shadow .25s;
+    }
+    .cell .idx {
+        position: absolute; top: 3px; left: 5px;
+        font-size: 9px; font-weight: 400; color: #334867;
+    }
+    .cell.active { background: #16304d; color: #bfdbfe; border-color: #2b4a70; }
+    .cell.active .idx { color: #4c7bab; }
+    .cell.new {
+        background: linear-gradient(135deg, #34d399, #22d3ee);
+        color: #04121f;
+        transform: scale(1.07);
+        box-shadow: 0 0 0 4px #34d39933, 0 8px 22px -6px #34d39988;
+        border-color: transparent;
+    }
+    .cell.new .idx { color: #064e3b; }
+    .cell.pop { animation: pop .45s ease; }
+    @keyframes pop {
+        0%   { background: #f8717144; box-shadow: 0 0 0 0 #f8717188; }
+        100% { background: transparent; box-shadow: 0 0 0 12px #f8717100; }
+    }
+
+    .legend { margin-top: 12px; display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: #7c8aa5; }
+    .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+
+    .status {
+        margin-top: 14px; padding: 10px 12px; border-radius: 10px;
+        background: #0c1526; border: 1px solid #1f2b45;
+        font-size: 12.5px; color: #93a4bf; min-height: 40px; display: flex; align-items: center; gap: 8px;
+    }
+    .status .tag {
+        background: #1e293b; color: #7dd3fc; padding: 2px 8px; border-radius: 999px; font-size: 11px; flex: none;
+    }
+    .status.warn .tag { background: #4c1d1d; color: #fca5a5; }
+
+    /* ---------- 控制台日志 ---------- */
+    #log {
+        margin: 0;
+        height: 470px;
+        overflow: auto;
+        font-family: Consolas, "Courier New", monospace;
+        font-size: 13px;
+        line-height: 1.65;
+        color: #86efac;
+        white-space: pre;
+        background: #050a14;
+        border: 1px solid #1f2b45;
+        border-radius: 10px;
+        padding: 14px;
+    }
+    #log .caret { display: inline-block; width: 7px; height: 15px; background: #86efac; animation: blink .9s steps(1) infinite; vertical-align: -2px; }
+    @keyframes blink { 50% { opacity: 0; } }
+    #log::-webkit-scrollbar { width: 9px; }
+    #log::-webkit-scrollbar-thumb { background: #24344f; border-radius: 9px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <h1>Test1.java 运行结果 · 一个数字一个数字输出</h1>
+    <p class="sub">
+        规则：新数字放进 <code>[0][0]</code>，已有的数字整体往右推一格（行末自动换到下一行行首）；<br>
+        整个二维数组存满后再存，先清除最后一位（最旧的数据），然后接着存 —— 与 <code>Test1.java</code> 的逻辑、输出完全一致。
+    </p>
+
+    <section class="panel controls">
+        <label class="k" for="nums">输入数字（逗号分隔）</label>
+        <input id="nums" type="text" value="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17">
+        <label class="k" for="speed">速度</label>
+        <select id="speed">
+            <option value="1,700">慢</option>
+            <option value="3,380" selected>中</option>
+            <option value="9,160">快</option>
+            <option value="999999,0">瞬间</option>
+        </select>
+        <button id="runBtn">开始演示</button>
+        <button id="resetBtn" class="ghost">重置</button>
+    </section>
+
+    <div class="main">
+        <section class="panel">
+            <div class="title"><b>二维数组 int[3][5]</b><span>行优先，下标越小越新</span></div>
+            <div class="grid" id="grid"></div>
+            <div class="legend">
+                <span><i class="dot" style="background:#22d3ee"></i>刚刚存入 [0][0]</span>
+                <span><i class="dot" style="background:#16304d;border:1px solid #2b4a70"></i>已存放数据</span>
+                <span><i class="dot" style="background:#0c1526;border:1px solid #1f2b45"></i>空位</span>
+            </div>
+            <div class="status" id="status"><span class="tag">就绪</span><span>点「开始演示」，看数字一个个放进去。</span></div>
+        </section>
+
+        <section class="panel">
+            <div class="title"><b>控制台输出</b><span>对应 Test1.java 的 stdout</span></div>
+            <pre id="log"></pre>
+        </section>
+    </div>
+</div>
+
+<script>
+(function () {
+    "use strict";
+
+    /* ===== 与 Test1.java 完全一致的常量与结构 ===== */
+    const ROWS = 3;
+    const COLS = 5;
+    const TOTAL = ROWS * COLS;
+
+    const gridEl   = document.getElementById('grid');
+    const logEl    = document.getElementById('log');
+    const numsEl   = document.getElementById('nums');
+    const speedEl  = document.getElementById('speed');
+    const runBtn   = document.getElementById('runBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const statusEl = document.getElementById('status');
+
+    let data = [];          // 二维数组
+    let size = 0;           // 已存放个数
+    let running = false;    // 是否正在演示
+    let stopped = false;    // 是否被中断
+
+    /* ---------- 数组初始化 / 核心逻辑 ---------- */
+    function initArray() {
+        data = Array.from({ length: ROWS }, () => new Array(COLS).fill(0));
+        size = 0;
+    }
+
+    /** 对应 Test1.java 的 add(int value) */
+    function add(value) {
+        let overflow = false;
+
+        // 1. 存满：先清除最后一位（最旧的数据）
+        if (size === TOTAL) {
+            data[ROWS - 1][COLS - 1] = 0;
+            size--;
+            overflow = true;
+        }
+
+        // 2. 已有元素整体往右推一格（行优先）
+        for (let i = size; i > 0; i--) {
+            data[Math.floor(i / COLS)][i % COLS] =
+                data[Math.floor((i - 1) / COLS)][(i - 1) % COLS];
+        }
+
+        // 3. 新元素放到 [0][0]
+        data[0][0] = value;
+        size++;
+
+        return overflow;
+    }
+
+    /** 对应 Test1.java 的 toList() */
+    function toList() {
+        const arr = [];
+        for (let i = 0; i < size; i++) {
+            arr.push(data[Math.floor(i / COLS)][i % COLS]);
+        }
+        return '[' + arr.join(', ') + ']';
+    }
+
+    /** 对应 Test1.java 里 %5d 打印出来的那几行 */
+    function gridText() {
+        let s = '';
+        for (let r = 0; r < ROWS; r++) {
+            for (let c = 0; c < COLS; c++) {
+                s += String(data[r][c]).padStart(5);
+            }
+            s += '\n';
+        }
+        return s;
+    }
+
+    /* ---------- 界面渲染 ---------- */
+    function buildGrid() {
+        gridEl.innerHTML = '';
+        for (let r = 0; r < ROWS; r++) {
+            for (let c = 0; c < COLS; c++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                cell.id = 'c-' + r + '-' + c;
+                cell.innerHTML = '<span class="idx">' + r + ',' + c + '</span><span class="v"></span>';
+                gridEl.appendChild(cell);
+            }
+        }
+    }
+
+    function renderGrid(clearEffects) {
+        for (let r = 0; r < ROWS; r++) {
+            for (let c = 0; c < COLS; c++) {
+                const cell = document.getElementById('c-' + r + '-' + c);
+                const index = r * COLS + c;
+                const value = data[r][c];
+
+                cell.querySelector('.v').textContent = value;
+                cell.classList.toggle('active', index < size);
+                if (clearEffects) {
+                    cell.classList.remove('new');
+                    cell.classList.remove('pop');
+                }
+            }
+        }
+    }
+
+    function markNewCell(overflow) {
+        const first = document.getElementById('c-0-0');
+        first.classList.remove('new');
+        void first.offsetWidth;   // 重置动画
+        first.classList.add('new');
+
+        if (overflow) {
+            const last = document.getElementById('c-' + (ROWS - 1) + '-' + (COLS - 1));
+            last.classList.remove('pop');
+            void last.offsetWidth;
+            last.classList.add('pop');
+            setTimeout(() => last.classList.remove('pop'), 500);
+        }
+    }
+
+    function setStatus(text, warn) {
+        statusEl.className = 'status' + (warn ? ' warn' : '');
+        statusEl.innerHTML = '<span class="tag">' + (warn ? '已清除最旧' : '进行中') + '</span><span>' + text + '</span>';
+    }
+
+    /* ---------- 打字机输出：一个数字一个数字地蹦出来 ---------- */
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function typeInto(text, charsPerFrame) {
+        return new Promise(resolve => {
+            let i = 0;
+            if (charsPerFrame >= text.length) {
+                logEl.textContent += text;
+                logEl.scrollTop = logEl.scrollHeight;
+                resolve();
+                return;
+            }
+            (function tick() {
+                logEl.textContent += text.slice(i, i + charsPerFrame);
+                i += charsPerFrame;
+                logEl.scrollTop = logEl.scrollHeight;
+                if (i < text.length) {
+                    requestAnimationFrame(tick);
+                } else {
+                    resolve();
+                }
+            })();
+        });
+    }
+
+    /* ---------- 解析输入 ---------- */
+    function parseNumbers() {
+        const raw = numsEl.value.trim();
+        if (!raw) {
+            alert('请先输入要存放的数字，用逗号分隔。');
+            return null;
+        }
+        const parts = raw.split(/\s*,\s*/).filter(p => p !== '');
+        const nums = [];
+        for (const p of parts) {
+            if (!/^-?\d+$/.test(p)) {
+                alert('输入格式错误，请确保都是整数，用逗号分隔：' + p);
+                return null;
+            }
+            nums.push(parseInt(p, 10));
+        }
+        return nums;
+    }
+
+    /* ---------- 主流程 ---------- */
+    async function run() {
+        if (running) {           // 再点一次 = 停止
+            stopped = true;
+            runBtn.textContent = '停止中…';
+            return;
+        }
+
+        const nums = parseNumbers();
+        if (!nums) return;
+
+        const [charsPerFrame, stepDelay] = speedEl.value.split(',').map(Number);
+
+        running = true;
+        stopped = false;
+        runBtn.textContent = '停止';
+        resetBtn.disabled = true;
+        numsEl.disabled = true;
+        speedEl.disabled = true;
+
+        logEl.textContent = '';
+        initArray();
+        renderGrid(true);
+        setStatus('准备中…');
+
+        for (let k = 0; k < nums.length && !stopped; k++) {
+            const value = nums[k];
+            const overflow = add(value);
+
+            renderGrid(true);
+            markNewCell(overflow);
+            setStatus('第 ' + (k + 1) + ' 次存入 ' + value + '，当前个数 ' + size + '/' + TOTAL
+                      + (overflow ? '，最后一位（最旧数据）已被清除' : ''),
+                      overflow);
+
+            await typeInto('===== 第 ' + (k + 1) + ' 次存入 ' + value + ' 后 =====\n', charsPerFrame);
+            await sleep(stepDelay / 3);
+            await typeInto(gridText(), charsPerFrame);
+            await typeInto('当前个数：' + size + '/' + TOTAL
+                         + '，行优先顺序（越靠前越新）：' + toList() + '\n\n', charsPerFrame);
+
+            await sleep(stepDelay);
+        }
+
+        running = false;
+        runBtn.textContent = '开始演示';
+        resetBtn.disabled = false;
+        numsEl.disabled = false;
+        speedEl.disabled = false;
+
+        if (stopped) {
+            setStatus('已停止，当前个数 ' + size + '/' + TOTAL + '。');
+        } else {
+            const last = nums[nums.length - 1];
+            setStatus('演示结束，共存入 ' + nums.length + ' 个数字，当前个数 ' + size + '/' + TOTAL
+                      + '，最新是 ' + last + '，最旧是 ' + data[ROWS - 1][COLS - 1] + '。');
+        }
+    }
+
+    function reset() {
+        stopped = true;
+        running = false;
+        runBtn.textContent = '开始演示';
+        resetBtn.disabled = false;
+        numsEl.disabled = false;
+        speedEl.disabled = false;
+
+        initArray();
+        renderGrid(true);
+        logEl.textContent = '';
+        statusEl.className = 'status';
+        statusEl.innerHTML = '<span class="tag">就绪</span><span>点「开始演示」，看数字一个个放进去。</span>';
+    }
+
+    /* ---------- 初始化 ---------- */
+    buildGrid();
+    initArray();
+    renderGrid(true);
+
+    runBtn.addEventListener('click', run);
+    resetBtn.addEventListener('click', reset);
+})();
+</script>
+</body>
+</html>
