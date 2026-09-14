@@ -1,4 +1,4 @@
-package com.atguigu.java.test.day3;
+package com.atguigu.java.test.day3.practice;
 
 public class Test01 {
     public static void main(String[] args) {
