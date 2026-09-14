@@ -1,6 +1,8 @@
-package com.atguigu.java.day3;
+package com.atguigu.java.day3.object_oriented_02;
 
 public class Animal {
+
+    public Animal(){}
 
     protected String animalName;
 

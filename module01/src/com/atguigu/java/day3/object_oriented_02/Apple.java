@@ -1,4 +1,4 @@
-package com.atguigu.java.day3;
+package com.atguigu.java.day3.object_oriented_02;
 
 public class Apple extends Fruit/* Java单继承，不能继承多个直接父类 , Animal*/{
 
@@ -6,9 +6,13 @@ public class Apple extends Fruit/* Java单继承，不能继承多个直接父�
     private String appleSize; // 大、中、小
 
     public Apple() {
+        // Recursive constructor call
+        // this("蓝色", "大");
     }
 
     public Apple(String appleColor, String appleSize) {
+        // Recursive constructor call
+        // this();
         this.appleColor = appleColor;
         this.appleSize = appleSize;
     }

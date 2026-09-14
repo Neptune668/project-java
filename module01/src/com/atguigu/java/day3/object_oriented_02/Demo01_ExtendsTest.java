@@ -1,4 +1,7 @@
-package com.atguigu.java.day3;
+package com.atguigu.java.day3.object_oriented_02;
+
+import com.atguigu.java.day3.object_oriented_02.Apple;
+import com.atguigu.java.day3.object_oriented_02.Banana;
 
 public class Demo01_ExtendsTest {
 
