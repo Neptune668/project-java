@@ -1,6 +1,6 @@
 package com.atguigu.test.day4.generic;
 
-import com.atguigu.java.day4.generic.Noodle;
+//import com.atguigu.java.day4.generic.Noodle;
 
 public class Demo01 {
     public static void main(String[] args) {
