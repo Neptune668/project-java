@@ -31,7 +31,7 @@ public class Soldier {
         // System.out.println("soldierName士兵使用soldierWeapon武器对敌人发起攻击！");
 
         // 需要拼接字符串才能引用变量
-        System.out.println(soldierName + "士兵使用" + soldierWeapon + "武器对敌人发起攻击！");
+        System.out.println(this.soldierName + "士兵使用" + this.soldierWeapon + "武器对敌人发起攻击！");
     }
 
     public void attack(String enemyName) {
