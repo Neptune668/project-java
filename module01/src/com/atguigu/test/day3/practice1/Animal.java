@@ -1,4 +1,4 @@
-package com.atguigu.java.test.day3.practice1;
+package com.atguigu.test.day3.practice1;
 
 public class Animal {
     private String animalName;

@@ -1,4 +1,4 @@
-package com.atguigu.java.test.day2;
+package com.atguigu.test.day2;
 
 /**
  * 二维数组存取演示：新元素永远放在 [0][0]，已有元素整体往右推。

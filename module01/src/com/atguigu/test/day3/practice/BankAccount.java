@@ -1,4 +1,4 @@
-package com.atguigu.java.test.day3.practice;
+package com.atguigu.test.day3.practice;
 
 //        8. 设计一个 BankAccount（银行账户）类：私有属性 balance（double）
 //        提供 setBalance 方法——余额小于 0 时打印"操作失败：余额不能为负数！"并拒绝赋值，

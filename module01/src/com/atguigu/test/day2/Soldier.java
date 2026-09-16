@@ -1,4 +1,4 @@
-package com.atguigu.java.test.day2;
+package com.atguigu.test.day2;
 
 /**
  * 士兵类
