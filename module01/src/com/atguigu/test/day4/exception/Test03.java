@@ -1,4 +1,4 @@
-package com.atguigu.test.exception;
+package com.atguigu.test.day4.exception;
 
 import java.util.Arrays;
 import java.util.Optional;

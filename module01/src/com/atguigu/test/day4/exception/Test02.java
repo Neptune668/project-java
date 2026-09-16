@@ -1,4 +1,4 @@
-package com.atguigu.test.exception;
+package com.atguigu.test.day4.exception;
 
 public class Test02 {
     public static void main(String[] args) {

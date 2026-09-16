@@ -1,4 +1,4 @@
-package com.atguigu.test.exception;
+package com.atguigu.test.day4.exception;
 
 public class UserLoginException extends RuntimeException{
     public UserLoginException() {
