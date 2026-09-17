@@ -1,11 +1,12 @@
 package com.atguigu.test.day4;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Test01 {
     public static void main(String[] args) {
-        LocalDate date = LocalDate.of(2017, 12, 31);   // 2017-12-31，周日
+        LocalDate date = LocalDate.of(2017, 12, 30);   // 2017-12-31，周日
 
         // 小写 y：日历年
         DateTimeFormatter yFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -19,9 +20,10 @@ public class Test01 {
         DateTimeFormatter YWFormatter = DateTimeFormatter.ofPattern("YYYY-ww");
         System.out.println("YYYY-ww: " + date.format(YWFormatter));     // 2018-01
 
-        System.out.println(
-                LocalDate.of(2017, 12, 31)
-                        .format(DateTimeFormatter.ofPattern("YYYY-MM-dd"))
-        );
+        //System.out.println(
+//                LocalDate.of(2017, 12, 31)
+//                        .format(DateTimeFormatter.ofPattern("YYYY-MM-dd"))；
+//        );
+
     }
 }
