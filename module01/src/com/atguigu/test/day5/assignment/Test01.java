@@ -16,5 +16,8 @@ public class Test01 {
         //通过作者和书名进行查询
         System.out.println(listBook.getBookByTitle("Java"));
         System.out.println(listBook.getBookByAuthors("Jack"));
+        System.out.println(listBook.getAuthors());
+        System.out.println(listBook.getBooks());
+        System.out.println(listBook.getBookMap());
     }
 }
