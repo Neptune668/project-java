@@ -15,6 +15,7 @@ public class ListSetMap {
         list.add("Kate");
         list.add("Bob");
 
+
         System.out.println(list.size());
 //        System.out.println(list.get(0));
         //遍历
@@ -73,5 +74,17 @@ public class ListSetMap {
             stringIntegerEntry.getValue();
             System.out.println(stringIntegerEntry.getKey() + ":" + stringIntegerEntry.getValue());
         }
+    }
+
+    @Test
+    public void test01(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Tom");
+        list.add("Jerry");
+        list.add("Tom");
+        list.add("Kate");
+        list.add("Bob");
+        List<String> strings = list.subList(0, 2);
+        System.out.println(strings.getClass().getName());
     }
 }
