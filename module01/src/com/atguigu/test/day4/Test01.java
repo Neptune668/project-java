@@ -1,14 +1,10 @@
-package com.atguigu.test.day5;
-
-import org.junit.Test;
+package com.atguigu.test.day4;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Demo02 {
-    @Test
-    public void test01() {
-
+public class Test01 {
+    public static void main(String[] args) {
         LocalDate date = LocalDate.of(2017, 12, 31);   // 2017-12-31，周日
 
         // 小写 y：日历年
@@ -22,5 +18,10 @@ public class Demo02 {
         // 大写 Y 加周信息
         DateTimeFormatter YWFormatter = DateTimeFormatter.ofPattern("YYYY-ww");
         System.out.println("YYYY-ww: " + date.format(YWFormatter));     // 2018-01
+
+        System.out.println(
+                LocalDate.of(2017, 12, 31)
+                        .format(DateTimeFormatter.ofPattern("YYYY-MM-dd"))
+        );
     }
 }
