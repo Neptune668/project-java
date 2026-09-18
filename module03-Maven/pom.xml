@@ -8,6 +8,12 @@
     <groupId>com.atguigu.maven</groupId>
     <artifactId>module03-Maven</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>child-module2</module>
+        <module>child-module1</module>
+        <module>child-module3</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -15,27 +21,41 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.3.12</version>
-        </dependency>
-        <dependency>
-            <!-- 通过坐标来引用依赖 -->
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-
-            <!-- 依赖的范围 -->
-            <scope>test</scope>
-        </dependency>
-        <!-- Source: https://mvnrepository.com/artifact/org.springframework/spring-core -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>5.3.38</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+    <!-- 子工程引用父工程中的依赖信息时，可以把版本号去掉。	-->
+    <!-- 把版本号去掉就表示子工程中这个依赖的版本由父工程决定。 -->
+    <!-- 具体来说是由父工程的dependencyManagement来决定。 -->
+    <!-- 子工程引用父工程中的依赖信息时，可以把版本号去掉。	-->
+    <!-- 把版本号去掉就表示子工程中这个依赖的版本由父工程决定。 -->
+    <!-- 具体来说是由父工程的dependencyManagement来决定。 -->
+    <!-- 使用dependencyManagement标签配置对依赖的管理 -->
+    <!-- 被管理的依赖并没有真正被引入到工程 -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>4.0.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>4.0.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>4.0.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>4.0.0.RELEASE</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>4.0.0.RELEASE</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
