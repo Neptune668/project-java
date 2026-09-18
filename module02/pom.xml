@@ -4,9 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 当前 Maven 工程的坐标 -->
-    <groupId>com.atguigu.maven</groupId>
-    <artifactId>module03-Maven</artifactId>
+    <groupId>com.atguigu.demo2</groupId>
+    <artifactId>module02</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -14,13 +13,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>3.3.12</version>
-        </dependency>
         <dependency>
             <!-- 通过坐标来引用依赖 -->
             <groupId>junit</groupId>
@@ -30,12 +23,11 @@
             <!-- 依赖的范围 -->
             <scope>test</scope>
         </dependency>
-        <!-- Source: https://mvnrepository.com/artifact/org.springframework/spring-core -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>5.3.38</version>
-            <scope>compile</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>3.3.12</version>
         </dependency>
     </dependencies>
+
 </project>
