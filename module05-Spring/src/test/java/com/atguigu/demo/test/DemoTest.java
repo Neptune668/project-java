@@ -11,13 +11,15 @@ public class DemoTest {
     @Test
     public void test01() {
         // 单元测试的方法
+        System.out.println("appName = " + appName);
+        System.out.println("atguiguMessage = " + atguiguMessage);
     }
-
     @Autowired
     private EmpController empController;
     @Value("${spring.application.name}")
-    private String appName;
-
+    private String appName;//atguigu.happy.message
+    @Value("${atguigu.happy.message}")
+    private String atguiguMessage;
     @Test
     public void test02() {
         String hello = empController.hello();

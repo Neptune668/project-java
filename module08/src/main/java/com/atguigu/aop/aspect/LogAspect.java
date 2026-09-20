@@ -46,7 +46,7 @@ public class LogAspect {
         System.out.println("[AOP后置通知] 方法最终结束了");//后置通知
     }
 
-    @Pointcut(value = "execution(public int com.atguigu.aop.api.Calculator.sub(int,int))")
+    @Pointcut(value = "execution(public int com.atguigu.aop.api.Calculator.div(int,int))")
     public void PointCutExpression() {
     }
 
