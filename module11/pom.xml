@@ -15,7 +15,7 @@
     </parent>
 
     <groupId>com.atguigu.web</groupId>
-    <artifactId>module11-SpringMVC</artifactId>
+    <artifactId>module11</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -28,13 +28,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!-- 根据需要加入 -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
     </dependencies>
 </project>

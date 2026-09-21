@@ -1,8 +1,6 @@
-package com.atguigu.web.controller;
+package web.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 //@ResponseBody
@@ -19,5 +17,23 @@ public class Demo01Controller {
         System.out.println("HelloWorld SpringMVC!!!");
 
         return "HelloWorld SpringMVC!!!太牛了！！！";
+    }
+
+    // @ResponseBody
+    @RequestMapping("/apple")
+    public String apple() {
+        return "apple~~~";
+    }
+
+    // @ResponseBody
+    @RequestMapping("/orange")
+    public String orange() {
+        return "orange~~~";
+    }
+
+    // @ResponseBody
+    @RequestMapping("/banana")
+    public String banana() {
+        return "banana~~~";
     }
 }
