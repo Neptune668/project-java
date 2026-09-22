@@ -1,5 +1,7 @@
 package com.atguigu.web.service.api;
 
+import com.atguigu.web.entity.Tiger;
+
 public interface TigerService {
-    void getTigerById();
+    Tiger getTigerById(Integer integer);
 }

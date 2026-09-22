@@ -15,7 +15,13 @@ public class TigerController {
     private TigerService service;
     @GetMapping("/{tigerId}")
     public Result<Tiger> getTigerById(@PathVariable Integer tigerId) {
-        service.getTigerById();
-        return Result.success();
+        try {
+            Tiger tiger = service.getTigerById(tigerId);
+            return Result.success(tiger);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return Result.failed(e.getMessage());
+        }
     }
 }
