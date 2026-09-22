@@ -39,7 +39,10 @@ public class TigerDaoImpl implements TigerDao {
 
     @Override
     public void updateTiger(Tiger tiger) {
+        System.out.println("=============>"+tiger.getTigerId());
         String sql = "update t_tiger set tiger_name=?,tiger_age=?,tiger_salary=? where tiger_id=?";
-        jdbcTemplate.update(sql, tiger.getTigerName(), tiger.getTigerAge(), tiger.getTigerSalary(), tiger.getTigerId());
+        System.out.println(sql);
+        int updated = jdbcTemplate.update(sql, tiger.getTigerName(), tiger.getTigerAge(), tiger.getTigerSalary(), tiger.getTigerId());
+        System.out.println("=============>"+updated);
     }
 }
