@@ -1,4 +1,4 @@
-package com.atguigu.demo.entity;
+package com.atguigu.web.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
