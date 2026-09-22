@@ -4,8 +4,6 @@ import com.atguigu.web.entity.Result;
 import com.atguigu.web.entity.Tiger;
 import com.atguigu.web.service.api.TigerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -70,7 +68,7 @@ public class TigerController {
     }
     //更新记录PUT
     @PutMapping
-    public Result<Tiger> updateTiger(@RequestBody Tiger tiger) {
+    public Result<Void> updateTiger(@RequestBody Tiger tiger) {
         try {
             service.updateTiger(tiger);
             return Result.success();

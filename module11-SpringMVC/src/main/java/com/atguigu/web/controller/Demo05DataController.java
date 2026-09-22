@@ -83,4 +83,19 @@ public class Demo05DataController {
 
         return "ok";
     }
+
+    @GetMapping("/receive/header")
+    public String receiveHeader(
+            @RequestHeader(value = "token", required = false, defaultValue = "missing") String token) {
+
+        return "前端发送的 Token 值是：" + token;
+    }
+
+    @GetMapping("/receive/cookie")
+    public String receiveCookie(
+            // 在 @CookieValue 注解中指定 Cookie 的名称，根据名称取值
+            @CookieValue(value = "atguigu_happy") String cookieValue) {
+
+        return "后端接收到的 Cookie 值是：" + cookieValue;
+    }
 }
