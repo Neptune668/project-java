@@ -214,3 +214,95 @@ public class DemoMonsterInterceptor implements HandlerInterceptor {
 }
 
 ```
+```java 
+//DemoWebConfig
+package com.atguigu.demo.config;
+
+import com.atguigu.demo.interceptor.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class DemoWebConfig implements WebMvcConfigurer {
+
+//    @Autowired
+//    private Demo01Interceptor demo01Interceptor;
+//
+//    @Autowired
+//    private Demo02Interceptor demo02Interceptor;
+//
+//    @Autowired
+//    private Demo03Interceptor demo03Interceptor;
+//
+//    @Autowired
+//    private Demo04Interceptor demo04Interceptor;
+//
+//    @Autowired
+//    private DemoMonsterInterceptor demoMonsterInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // 提问：可以自己 new 拦截器的对象吗？
+        // 回答：绝对不行！！！
+        // 理由 1：自己 new 的对象并不是 IoC 容器中管理的那个对象，自己 new 的对象不能享受到 IoC 容器对对象的增强
+        // 理由 2：在全局范围内使用的大组件创建对象的代码在项目中散落各处，非常不利于统一管理和维护
+        // 结论：必须要从 IoC 容器中获取出来这个对象进行操作
+        // registry.addInterceptor(new Demo01Interceptor());
+
+        registry.addInterceptor(demo04Interceptor)
+                .addPathPatterns("/fruit/**") // 匹配多层目录，包括零层、单层、多层
+                .excludePathPatterns("/fruit/apple/red/**") // 配置不拦截的路径，用不用通配符都行，看需求
+                .order(4);
+
+        registry.addInterceptor(demo03Interceptor)
+                .addPathPatterns("/fruit/*") // 匹配单层目录，不匹配零层和多层
+                .order(3);
+
+        // 注册另一个拦截器
+        registry.addInterceptor(demo02Interceptor)
+                .addPathPatterns("/tiger/list") // 精确匹配
+                .order(2);
+
+        // 调用注册器对象的方法添加拦截器对象
+        // registry.addInterceptor(拦截器对象);
+        // 默认情况可以不指定拦截请求的范围，默认拦截所有的请求（所有归 SpringMVC 管的请求）
+        registry.addInterceptor(demo01Interceptor).order(1);
+
+        // 注册练习中的拦截器
+        registry.addInterceptor(demoMonsterInterceptor);
+    }
+}
+
+```
+```java
+//TigerExceptionHandler
+package com.atguigu.demo.config;
+
+import com.atguigu.demo.entity.Result;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class TigerExceptionHandler {
+
+    // 如果一个异常对象和多个异常处理方法都匹配，那么范围最精确、最接近的优先
+    // 把异常类型和处理异常的方法进行了映射
+    @ExceptionHandler(value = {ArithmeticException.class})
+    public Result<Void> arithmeticExceptionHandler(ArithmeticException exception) {
+
+        // 把异常信息封装到失败状态的 Result 对象中，Result 对象作为响应体返回给前端
+        return Result.failed("[全局范围][异常映射][小范围]" + exception.getMessage());
+    }
+
+    // NullPointerException 是 Exception 的子类，所以能够匹配，可以映射
+    @ExceptionHandler(value = Exception.class)
+    public Result<Void> allExceptionHandler(Exception exception) {
+
+        // 把异常信息封装到失败状态的 Result 对象中，Result 对象作为响应体返回给前端
+        return Result.failed("[全局范围][异常映射][大范围]" + exception.getMessage());
+    }
+}
+
+```
