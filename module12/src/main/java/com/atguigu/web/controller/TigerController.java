@@ -18,6 +18,7 @@ public class TigerController {
     public Result<Tiger> getTigerById(@PathVariable Integer tigerId) {
         try {
             Tiger tiger = service.getTigerById(tigerId);
+            System.out.println("查询到单条结果");
             return Result.success(tiger);
         } catch (Exception e) {
             e.printStackTrace();
