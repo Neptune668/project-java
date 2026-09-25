@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -48,5 +49,10 @@ public class Demo01 {
     public void Test06(){
         int i = employeeMapper.deleteById(1);
         System.out.println(i);
+    }
+    @Test
+    public void Test07(){
+        List<Employee> list = employeeMapper.selectByIds(Arrays.asList(1, 2, 3));
+        list.forEach(System.out::println);
     }
 }
