@@ -32,4 +32,7 @@ public class Employee {
     private String phoneNum66;
 
     private Integer deptId;
+
+    @TableField(exist = false)
+    private String depName;
 }
