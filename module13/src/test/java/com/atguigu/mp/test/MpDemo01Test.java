@@ -65,6 +65,6 @@ public class MpDemo01Test {
     public void test06(){
 //        int i = employeeMapper.deleteById(7);
 //        System.out.println("i = " + i);
-        employeeMapper.selectAll();
+//        employeeMapper.selectAll();
     }
 }

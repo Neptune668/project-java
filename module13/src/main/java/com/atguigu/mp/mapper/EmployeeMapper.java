@@ -9,5 +9,5 @@ import java.util.List;
 @Mapper
 public interface EmployeeMapper extends BaseMapper<Employee> {
 
-    List<Employee> selectAll();
+    List<Employee> selectAll1();
 }
