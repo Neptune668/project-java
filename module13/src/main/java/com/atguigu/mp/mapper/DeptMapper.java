@@ -2,6 +2,7 @@ package com.atguigu.mp.mapper;
 
 import com.atguigu.mp.entity.Dept;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author YuanYi
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2026-09-28 19:26:32
 * @Entity com.atguigu.mp.entity.Dept
 */
+@Mapper
 public interface DeptMapper extends BaseMapper<Dept> {
 
 }

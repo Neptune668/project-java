@@ -10,4 +10,8 @@ import java.util.List;
 public interface EmployeeMapper extends BaseMapper<Employee> {
 
     List<Employee> selectAll1();
+
+    Employee selectEmpByIdWithDept(Integer empId);
+
+//    List<Employee> selectEmpByIdWithDept(int id);
 }

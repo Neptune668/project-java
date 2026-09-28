@@ -30,6 +30,10 @@ public class Employee {
 
     private Integer deptId;
 
+    // 关联的部门对象：查询后由 resultMap 填充，表中没有对应列
+    @TableField(exist = false)
+    private Dept dept;
+
     @TableField(exist = false)
     private String depName;
 
