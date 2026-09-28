@@ -35,4 +35,7 @@ public class Employee {
 
     @TableLogic          // 逻辑删除字段
     private Integer is_deleted;
+
+    @Version                     // 乐观锁版本号字段
+    private Integer version;
 }
