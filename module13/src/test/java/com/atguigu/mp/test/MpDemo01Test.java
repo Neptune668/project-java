@@ -47,6 +47,24 @@ public class MpDemo01Test {
                 i -> i.gt(Employee::getEmpSalary, 2)
         ).orderByAsc(Employee::getEmpSalary);
         employeeMapper.selectList(page,wrapper).forEach(System.out::println);
+        System.out.println("----------------------------------");
+//        page.getRecords().forEach(System.out::println);
+    }
+    //分页详细测试
+    @Test
+    public void test05() {
+        Page<Employee> page = new Page<>(1, 2);
+        employeeMapper.selectPage(page, null);
+        page.getRecords().forEach(System.out::println);
+        System.out.println("----------------------------------");
+        System.out.println("page = " + page);
     }
 
+    //逻辑删除
+    @Test
+    public void test06(){
+//        int i = employeeMapper.deleteById(7);
+//        System.out.println("i = " + i);
+        employeeMapper.selectAll();
+    }
 }

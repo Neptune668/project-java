@@ -1,9 +1,6 @@
 package com.atguigu.mp.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -35,4 +32,7 @@ public class Employee {
 
     @TableField(exist = false)
     private String depName;
+
+    @TableLogic          // 逻辑删除字段
+    private Integer is_deleted;
 }
