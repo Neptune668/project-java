@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface DeptMapper extends BaseMapper<Dept> {
 
+    Dept selectDeptByIdWithEmpList(Integer deptId);
 }
 
 

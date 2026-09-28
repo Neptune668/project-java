@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * 部门表
  * @TableName t_dept
@@ -28,6 +30,10 @@ public class Dept {
      * 部门名称
      */
     private String deptName;
+
+    // 关联的员工集合：查询后由 resultMap 的 collection 填充，表中没有对应列
+    @TableField(exist = false)
+    private List<Employee> empList;
 
     @Override
     public boolean equals(Object that) {
