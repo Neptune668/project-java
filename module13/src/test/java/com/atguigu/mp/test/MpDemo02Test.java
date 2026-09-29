@@ -39,4 +39,5 @@ public class MpDemo02Test {
         dept.getEmpList().forEach(employee ->
                 System.out.println(employee.getEmpId() + " 名字：" + employee.getEmpName()));
     }
+
 }
