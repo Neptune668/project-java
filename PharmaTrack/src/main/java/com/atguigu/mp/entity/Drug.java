@@ -1,9 +1,6 @@
 package com.atguigu.mp.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,6 +34,20 @@ public class Drug {
      * 预警阈值
      */
     private Integer warnLine;
+
+    /**
+     * 逻辑删除
+     */
+    @TableField(value = "is_deleted")
+    private Integer isDeleted;
+
+    /**
+     *
+     * 乐观锁
+     * @return
+     */
+    @Version
+    private Integer version;
 
     @Override
     public boolean equals(Object that) {
