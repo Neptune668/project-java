@@ -24,16 +24,6 @@ public interface DrugService extends IService<Drug> {
     void decreaseStock(String drugName, int quantity);
 
     /**
-     * 3. 低库存预警列表
-     */
-    List<Drug> listLowStock();
-
-    /**
-     * 4. 按药品名模糊查询
-     */
-    List<Drug> searchByName(String keyword);
-
-    /**
      * 5. 数量校验
      */
     void validateQuantity(int quantity);
