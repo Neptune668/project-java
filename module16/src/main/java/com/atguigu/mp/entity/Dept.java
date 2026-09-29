@@ -4,12 +4,18 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * 部门表
  * @TableName t_dept
  */
+@AllArgsConstructor
+@NoArgsConstructor
 @TableName(value ="t_dept")
 @Data
 public class Dept {
@@ -23,6 +29,9 @@ public class Dept {
      * 部门名称
      */
     private String deptName;
+
+    @TableField(exist = false)
+    private List<Emp> empList;
 
     @Override
     public boolean equals(Object that) {

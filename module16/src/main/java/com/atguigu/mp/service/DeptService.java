@@ -1,7 +1,8 @@
 package com.atguigu.mp.service;
 
 import com.atguigu.mp.entity.Dept;
-import com.baomidou.mybatisplus.extension.service.IService;
+//import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.spring.service.IService;
 
 /**
 * @author YuanYi

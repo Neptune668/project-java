@@ -1,6 +1,6 @@
 package com.atguigu.mp.service.impl;
 
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.spring.service.impl.ServiceImpl;
 import com.atguigu.mp.entity.Dept;
 import com.atguigu.mp.service.DeptService;
 import com.atguigu.mp.mapper.DeptMapper;

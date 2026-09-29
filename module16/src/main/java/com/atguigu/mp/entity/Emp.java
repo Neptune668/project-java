@@ -5,12 +5,17 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
  * @TableName t_emp
  */
+@AllArgsConstructor
+@NoArgsConstructor
 @TableName(value ="t_emp")
 @Data
 public class Emp {
@@ -59,6 +64,9 @@ public class Emp {
      * 乐观锁版本号
      */
     private Integer version;
+
+    @TableField(exist = false)
+    private Dept dept;
 
     @Override
     public boolean equals(Object that) {
