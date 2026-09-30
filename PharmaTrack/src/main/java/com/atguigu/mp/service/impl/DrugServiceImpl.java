@@ -69,7 +69,7 @@ public class DrugServiceImpl extends ServiceImpl<DrugMapper, Drug>
 
     @Override
     public void validateQuantity(int quantity) {
-        System.out.println("5. 输入数量<=0时给出提示。");
+        System.out.println("输入数量<=0时给出提示");
     }
 }
 
