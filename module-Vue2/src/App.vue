@@ -1,12 +1,16 @@
 <script setup lang="ts">
-// import HelloWorld from './components/HelloWorld.vue'
-import Count from "./components/count.vue";
+// import Count from "./components/count.vue";
+// import A from "./components/a.vue";
+// import LoginForm from "./components/LoginForm.vue";
+import TodoApp from "./components/TodoApp.vue";
 </script>
 
 <template>
-<!--  <HelloWorld />-->
+
   <div>
-    <h1>Hello World</h1>
-    <count/>
+    <TodoApp/>
+<!--    <count/>-->
+<!--    <A/>-->
+<!--    <LoginForm/>-->
   </div>
 </template>
