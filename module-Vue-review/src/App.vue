@@ -5,6 +5,8 @@
 import Cmp01Header from './components/Cmp01Header.vue';
 // import Cmp02Menu from './components/Cmp02Menu.vue';
 import Cmp03Content from './components/Cmp03Content.vue';
+import Parent from './components/parent.vue';
+import Child from './components/child.vue';
 const stuName = "Tom";
 
 const receiveData = (animalName: string, animalPrice: number) => {
@@ -40,6 +42,8 @@ const receiveData = (animalName: string, animalPrice: number) => {
     <div class="rowContainer">
       <Cmp02Menu/>
       <Cmp03Content/>
+      <parent/>
+      <child/>
     </div>
   </div>
 </template>
